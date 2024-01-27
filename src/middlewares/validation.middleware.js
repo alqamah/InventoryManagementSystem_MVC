@@ -1,7 +1,6 @@
 import {body, validationResult} from 'express-validator'; //imports the body of request
 
 const validateRequest = async (req, res, next) =>{
-  console.log('Inside validateRequest',req.body);
    //Step 1. Setup rules for validation
   const rules = [
     body('name').notEmpty().withMessage('Name must be at least 5 characters long'),
@@ -23,7 +22,6 @@ const validateRequest = async (req, res, next) =>{
   
   //Step 3. Get the validation errors
   var errors = validationResult(req);
-  console.log('errors',errors.array());
   if (!errors.isEmpty()) {
     return res.render('new-product', {
       errorMessage: errors.array()[0].msg

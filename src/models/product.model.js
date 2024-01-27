@@ -23,7 +23,14 @@ export default class ProductModel {
   }
 
   static getById(id) {
-    return products.find((product) => product.id === id);
+    let productFound = products.find((product) => product.id == id);
+    return productFound;
+  }
+  static update(productObj){
+    const index = products.findIndex((product) => product.id == productObj.id );
+    console.log(products[index]);
+    products[index] = productObj;
+    console.log(products[index]);
   }
 }
 
