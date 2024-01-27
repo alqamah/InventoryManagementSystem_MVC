@@ -1,3 +1,8 @@
+/**
+ * ProductModel class represents a product entity.
+ * It contains a constructor for creating ProductModel instances,
+ * and static methods for retrieving, adding, updating and deleting products.
+ */
 export default class ProductModel {
   constructor(id, name, desc, price, imageUrl) {
     this.id = id;
@@ -26,11 +31,16 @@ export default class ProductModel {
     let productFound = products.find((product) => product.id == id);
     return productFound;
   }
-  static update(productObj){
-    const index = products.findIndex((product) => product.id == productObj.id );
+  static update(productObj) {
+    const index = products.findIndex((product) => product.id == productObj.id);
     console.log(products[index]);
     products[index] = productObj;
     console.log(products[index]);
+  }
+
+  static delete(id) {
+    let index = products.findIndex((product) => product.id == id);
+    products.splice(index, 1);
   }
 }
 
