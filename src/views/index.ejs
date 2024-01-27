@@ -7,27 +7,19 @@
             <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Image</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         <% products.forEach(product=> { %>
             <tr>
-                <th scope="row">
-                    <%= product.id %>
-                </th>
-                <td>
-                    <%= product.name %>
-                </td>
-                <td>
-                    <%= product.desc %>
-                </td>
-                <td><%= product.price %>
-                </td>
-                <td>
-                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="max-width: 100px;">
-                </td>
+                <td> <%= product.id %> </td>
+                <td> <%= product.name %> </td>
+                <td> <%= product.desc %> </td>
+                <td> <%= product.price %> </td>
+                <td> <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="max-width: 100px;"> </td>
+                <td> <a href="/update-product" class="btn btn-warning">Edit</a> </td>
             </tr>
-            <% }) %>
+        <% }) %>
     </tbody>
 </table>
-</div>

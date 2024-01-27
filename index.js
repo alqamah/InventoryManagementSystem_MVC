@@ -13,9 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve(), 'src', 'views'));
 
+
 app.get('/', productsController.getProducts);
 app.get('/add-product', productsController.getAddProduct);
 app.post('/', validateMiddleware, productsController.postAddProduct);
+app.get('/update-product', productsController.getUpdateProductView);
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');

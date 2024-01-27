@@ -21,6 +21,10 @@ export default class ProductModel {
     );
     products.push(newProduct);
   }
+
+  static getById(id) {
+    return products.find((product) => product.id === id);
+  }
 }
 
 var products = [

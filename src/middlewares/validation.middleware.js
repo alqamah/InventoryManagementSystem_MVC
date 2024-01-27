@@ -5,6 +5,7 @@ const validateRequest = async (req, res, next) =>{
    //Step 1. Setup rules for validation
   const rules = [
     body('name').notEmpty().withMessage('Name must be at least 5 characters long'),
+    //if (cond = true): continue; else: err_message
     body('price').isFloat({min:1}).withMessage('Price must be a positive value'),
     body('imageUrl').isURL().withMessage('URL is invalid')
   ];
@@ -15,10 +16,11 @@ const validateRequest = async (req, res, next) =>{
    * Maps array of rules to array of promises from rule.run(), 
    * awaits all promises to complete, 
   */
-  await Promise.all( 
-    rules.map(rule => rule.run(req));
-  );
+  await Promise.all(
+    rules.map(rule => rule.run(req))
+  )
 
+  
   //Step 3. Get the validation errors
   var errors = validationResult(req);
   console.log('errors',errors.array());
