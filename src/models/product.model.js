@@ -16,13 +16,13 @@ export default class ProductModel {
     return products;
   }
 
-  static add(productObj) {
+  static add(productObj, imageUrl) {
     let newProduct = new ProductModel(
       products.length + 1,
       productObj.name,
       productObj.desc,
       productObj.price,
-      productObj.imageUrl
+      imageUrl
     );
     products.push(newProduct);
   }

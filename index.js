@@ -62,7 +62,7 @@ app.get('/', productsController.getProducts);
  */
 app.get('/add-product', productsController.getAddProduct);
 //app.post('/', validateMiddleware, productsController.postAddProduct);
-app.post('/', uploadFile.single('imageUrl'), productsController.postAddProduct);
+app.post('/', uploadFile.single('imageUrl'),validateMiddleware, productsController.postAddProduct);
 
 /**
  * Handle GET request to update product page.

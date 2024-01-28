@@ -6,15 +6,16 @@ const validateRequest = async (req, res, next) =>{
     body('name').notEmpty().withMessage('Name must be at least 5 characters long'),
     //if (cond = true): continue; else: err_message
     body('price').isFloat({min:1}).withMessage('Price must be a positive value'),
-    body('imageUrl').isURL().withMessage('URL is invalid')
-  ];
+    //('imageUrl').isURL().withMessage('URL is invalid'); //fileUpload instead of URL
+    //Creating a custom validation rule
+    body('imageUrl').custom((value, {req})=>{
+      if(!req.file)
+        throw new Error ("Image is required");
+      else
+        return true;
+    }),
+  ]
 
-  //Step 2. Run the rules
-  /**
-   * Runs validation rules asynchronously using Promise.all.
-   * Maps array of rules to array of promises from rule.run(), 
-   * awaits all promises to complete, 
-  */
   await Promise.all(
     rules.map(rule => rule.run(req))
   )
