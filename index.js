@@ -13,6 +13,7 @@ import ProductsController from './src/controllers/product.controller.js';
 import ejsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import validateMiddleware from './src/middlewares/validation.middleware.js';
+import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 
 /**
  * Initialize Express app and controller instances.
@@ -60,7 +61,8 @@ app.get('/', productsController.getProducts);
  * Calls productsController.postAddProduct handler.
  */
 app.get('/add-product', productsController.getAddProduct);
-app.post('/', validateMiddleware, productsController.postAddProduct);
+//app.post('/', validateMiddleware, productsController.postAddProduct);
+app.post('/', uploadFile.single('imageUrl'), productsController.postAddProduct);
 
 /**
  * Handle GET request to update product page.
