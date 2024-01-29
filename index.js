@@ -41,6 +41,7 @@ app.get('/delete-product/:id', productsController.deleteProduct);
 app.get('/register', userController.getRegister);
 app.get('/login', userController.getLogin);
 app.post('/register', userController.postRegister);
+app.post('/login', userController.postLogin);
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000...');

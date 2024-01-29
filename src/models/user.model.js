@@ -14,6 +14,13 @@ export default class UserModel{
         users.push(newUser);
     }
 
+    static find(email, password){
+        const userFoundIndex = users.findIndex(user => (user.email == email && user.password == password ));
+        if(userFoundIndex!=-1)
+            return true;
+        else
+            return false;
+    }
 }
 
 var users = [];

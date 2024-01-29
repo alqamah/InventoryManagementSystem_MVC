@@ -10,4 +10,9 @@
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
+    <%if(errorMessage){ %>
+        <div class="alert alert-danger mt-5" role="alert">
+            <%= errorMessage %>
+        </div>
+    <%}%>
 </form>
