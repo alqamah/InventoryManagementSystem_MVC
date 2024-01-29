@@ -16,6 +16,7 @@ const validateRequest = async (req, res, next) =>{
     }),
   ]
 
+  //Step 2. Run the validation
   await Promise.all(
     rules.map(rule => rule.run(req))
   )
