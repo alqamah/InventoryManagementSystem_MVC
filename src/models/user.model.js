@@ -6,4 +6,14 @@ export default class UserModel{
         this.email = email;
         this.password = password;
     }
+
+    static add(name, email, password){
+        let id = users.length + 1;
+        const newUser = new UserModel(id, name, email, password);
+        console.log('user registered:',newUser);
+        users.push(newUser);
+    }
+
 }
+
+var users = [];
