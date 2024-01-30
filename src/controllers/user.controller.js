@@ -1,4 +1,5 @@
 import UserModel from "../models/user.model.js";
+import session from "express-session";
 
 export default class UserController{
     getRegister(req, res){
@@ -16,9 +17,9 @@ export default class UserController{
     postLogin(req, res){
         const {email, password} = req.body;
         var result = UserModel.find(email,password);
-        if(result)
-            res.redirect('/');
-        else
-            res.render('login',{errorMessage : "Credentials Invalid"});
+        if(!result)
+            return res.render('login',{errorMessage : "Credentials Invalid"});
+        req.session.userEmail = email;
+        res.redirect('/');
     }
 }
