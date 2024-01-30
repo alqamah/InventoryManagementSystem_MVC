@@ -42,6 +42,8 @@ app.get('/register', userController.getRegister);
 app.get('/login', userController.getLogin);
 app.post('/register', userController.postRegister);
 app.post('/login', userController.postLogin);
+app.get('/logout', userController.getLogout);
+
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000...');
