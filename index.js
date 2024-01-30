@@ -17,19 +17,13 @@ app.use(ejsLayouts);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-/**
- * Configures session middleware using the given options.
- * - `secret` is the secret key used to sign session cookies.
- * - `resave` forces session to be saved even if unmodified.
- * - `saveUninitialized` saves new sessions that have not been modified. 
- * - `cookie.secure` sets the secure flag on session cookies.
- */
+
 app.use(session({
   secret: 'secretkey',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
-})); //session configured
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve(), 'src', 'views'));
@@ -40,7 +34,7 @@ app.get('/add-product',auth,productsController.getAddProduct);
 app.post('/',auth,uploadFile.single('imageUrl'),validateMiddleware, productsController.postAddProduct);
 
 app.get('/update-product/:id',auth,productsController.getUpdateProductView);
-app.post('/update-product',auth,productsController.postUpdateProduct);
+app.post('/update-product',auth,uploadFile.single('imageUrl'), productsController.postUpdateProduct);
 
 app.get('/delete-product/:id',auth,productsController.deleteProduct);
 

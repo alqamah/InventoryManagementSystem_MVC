@@ -23,4 +23,6 @@ export default class UserModel{
     }
 }
 
-var users = [];
+var users = [
+    new UserModel (1,'Alqama','alqama.hasnain@gmail.com','pass')
+];

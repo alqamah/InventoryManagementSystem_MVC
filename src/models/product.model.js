@@ -31,11 +31,16 @@ export default class ProductModel {
     let productFound = products.find((product) => product.id == id);
     return productFound;
   }
-  static update(productObj) {
+  static update(productObj, imageUrl) {
     const index = products.findIndex((product) => product.id == productObj.id);
-    console.log(products[index]);
-    products[index] = productObj;
-    console.log(products[index]);
+    let newProduct = new ProductModel(
+      products.length + 1,
+      productObj.name,
+      productObj.desc,
+      productObj.price,
+      imageUrl
+    );
+    products[index] = newProduct;
   }
 
   static delete(id) {
