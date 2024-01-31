@@ -8,6 +8,8 @@ import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 import UserController from './src/controllers/user.controller.js';
 import session from 'express-session';
 import { auth } from './src/middlewares/auth.middleware.js';
+import cookieParser from 'cookie-parser';
+import { setLastVisit } from './src/middlewares/last-visit.middleware.js';
 
 const app = express();
 const productsController = new ProductsController();
@@ -24,6 +26,11 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false },
 }));
+
+//Inside the setLastVisit middleware, we are checking for the cookie in the req obj and if it's not found, 
+//we are setting the cookie inside the res obj. The job of the cookie parser is to parse the data between req and res.
+app.use(cookieParser()); //it parses the data from and b/w req and res objects
+app.use(setLastVisit);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve(), 'src', 'views'));
